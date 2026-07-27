@@ -1,0 +1,465 @@
+---
+const PROJECT_NAME = 'Cerradura Inteligente';
+const PROJECT_SLUG = 'cerradurainteligente';
+const PROJECT_DESCRIPTION =
+  'Cerraduras inteligentes para tu hogar y negocio: abre con huella, código o desde el móvil. Seguridad sin llaves, instalación sencilla.';
+// Endpoint that receives requirement submissions (Brotea bot/orchestrator).
+const ENDPOINT =
+  import.meta.env.PUBLIC_REQUIREMENTS_ENDPOINT ?? 'https://api.brotea.dev/requirements';
+
+const features = [
+  {
+    icon: 'M7 11V7a5 5 0 0 1 10 0v4M5 11h14v10H5z',
+    title: 'Olvídate de las llaves',
+    text: 'Abre con tu huella, un código o el móvil. Nunca más quedarte fuera por perder las llaves.',
+  },
+  {
+    icon: 'M12 2 4 6v6c0 5 3.4 8.6 8 10 4.6-1.4 8-5 8-10V6z',
+    title: 'Seguridad real',
+    text: 'Cifrado de grado bancario, alarma antisabotaje y bloqueo automático al cerrar la puerta.',
+  },
+  {
+    icon: 'M12 8v4l3 3M21 12a9 9 0 1 1-9-9 9 9 0 0 1 9 9z',
+    title: 'Historial de accesos',
+    text: 'Sabe quién entra y cuándo. Recibe avisos en tiempo real en tu móvil con cada apertura.',
+  },
+  {
+    icon: 'M17 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zM12 18h.01',
+    title: 'Control desde el móvil',
+    text: 'Crea llaves digitales para familia o invitados y revócalas cuando quieras, estés donde estés.',
+  },
+  {
+    icon: 'M14.7 6.3a5 5 0 1 0 3 3L21 6l-2-2-1.3 1.3-1-1z',
+    title: 'Instalación sencilla',
+    text: 'Se adapta a la mayoría de puertas sin obras. Instálala tú en minutos o pide instalación a domicilio.',
+  },
+  {
+    icon: 'M6 7h12v10H6zM9 7V5h6v2',
+    title: 'Batería de larga duración',
+    text: 'Hasta 12 meses de autonomía, avisos de batería baja y apertura de emergencia por USB-C.',
+  },
+];
+
+const products = [
+  {
+    name: 'Huella dactilar',
+    tag: 'La más vendida',
+    text: 'Reconoce tu huella en menos de 0,5 segundos. Hasta 100 huellas registradas para toda la familia.',
+    points: ['Apertura en 0,5 s', 'Hasta 100 usuarios', 'Teclado de respaldo'],
+  },
+  {
+    name: 'Teclado con código',
+    tag: 'Ideal alquileres',
+    text: 'Códigos permanentes, temporales o de un solo uso. Perfecta para pisos turísticos y oficinas.',
+    points: ['Códigos temporales', 'Sin apps obligatorias', 'Pantalla antihuellas'],
+  },
+  {
+    name: 'WiFi + App',
+    tag: 'Control total',
+    text: 'Abre y supervisa tu puerta desde cualquier lugar. Compatible con Alexa y Google Home.',
+    points: ['Apertura remota', 'Avisos en tiempo real', 'Alexa y Google Home'],
+  },
+];
+
+const steps = [
+  ['Elige tu cerradura', 'Cuéntanos cómo es tu puerta y te recomendamos el modelo exacto.'],
+  ['Instálala en minutos', 'Sin obras ni cambiar la puerta. Tú mismo o con nuestro instalador.'],
+  ['Controla tu acceso', 'Huellas, códigos e invitaciones desde la app. Tu puerta, bajo control.'],
+];
+
+const faqs = [
+  [
+    '¿Sirve para mi puerta?',
+    'Los modelos se adaptan a la gran mayoría de puertas estándar y de seguridad. Si nos escribes con una foto de tu cerradura actual, te confirmamos compatibilidad sin compromiso.',
+  ],
+  [
+    '¿Qué pasa si se queda sin batería?',
+    'La cerradura avisa con semanas de antelación en la app y con señales en el propio dispositivo. Y si llegara a agotarse, siempre puedes abrirla con una batería externa por USB-C o con la llave física de emergencia.',
+  ],
+  [
+    '¿Es segura frente a ocupas o robos?',
+    'Usa cifrado de grado bancario, alarma antisabotaje y bloqueo automático. A diferencia de una llave, un código o huella no se puede copiar en una ferretería.',
+  ],
+  [
+    '¿Necesito WiFi en casa?',
+    'No. Todas funcionan de forma autónoma con huella o código. El WiFi solo hace falta si quieres apertura remota y avisos en el móvil.',
+  ],
+];
+---
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{PROJECT_NAME} — Seguridad sin llaves para tu hogar</title>
+    <meta name="description" content={PROJECT_DESCRIPTION} />
+  </head>
+  <body>
+    <header class="nav">
+      <div class="container nav-inner">
+        <a class="brand" href="#top">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+            <rect x="5" y="11" width="14" height="10" rx="2" />
+            <circle cx="12" cy="16" r="1.5" />
+          </svg>
+          Cerradura<span>Inteligente</span>
+        </a>
+        <nav aria-label="Principal">
+          <a href="#ventajas">Ventajas</a>
+          <a href="#modelos">Modelos</a>
+          <a href="#como-funciona">Cómo funciona</a>
+          <a href="#faq">Preguntas</a>
+        </nav>
+        <a class="btn btn-small" href="#contacto">Pide asesoría</a>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="container hero-inner">
+          <div class="hero-copy">
+            <p class="eyebrow">Seguridad sin llaves</p>
+            <h1>Tu puerta, más segura.<br />Sin llaves, sin copias, sin sustos.</h1>
+            <p class="lead">
+              Abre con tu huella, un código o desde el móvil. Controla quién entra en tu
+              casa o negocio y recibe cada apertura en tiempo real.
+            </p>
+            <div class="hero-actions">
+              <a class="btn" href="#contacto">Encuentra tu cerradura</a>
+              <a class="btn btn-ghost" href="#modelos">Ver modelos</a>
+            </div>
+            <ul class="hero-stats" role="list">
+              <li><strong>0,5&nbsp;s</strong><span>apertura con huella</span></li>
+              <li><strong>12&nbsp;meses</strong><span>de batería</span></li>
+              <li><strong>100</strong><span>usuarios por cerradura</span></li>
+            </ul>
+          </div>
+          <div class="hero-visual" aria-hidden="true">
+            <div class="lock-card">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                <rect x="5" y="11" width="14" height="10" rx="2" />
+                <circle cx="12" cy="16" r="1.5" />
+              </svg>
+              <p class="lock-status">Puerta bloqueada</p>
+              <p class="lock-event">Última apertura: huella · hace 2 min</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="ventajas" class="section">
+        <div class="container">
+          <h2>Todo lo que una llave no puede hacer</h2>
+          <p class="section-lead">
+            Una cerradura inteligente no solo abre la puerta: te da control, avisos y
+            tranquilidad.
+          </p>
+          <div class="grid grid-3">
+            {features.map((f) => (
+              <article class="card">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <path d={f.icon} />
+                </svg>
+                <h3>{f.title}</h3>
+                <p>{f.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="modelos" class="section section-alt">
+        <div class="container">
+          <h2>Elige cómo quieres abrir</h2>
+          <p class="section-lead">
+            Tres familias de cerraduras para hogares, oficinas y alquileres turísticos.
+          </p>
+          <div class="grid grid-3">
+            {products.map((p) => (
+              <article class="card product">
+                <p class="tag">{p.tag}</p>
+                <h3>{p.name}</h3>
+                <p>{p.text}</p>
+                <ul role="list">
+                  {p.points.map((pt) => <li>{pt}</li>)}
+                </ul>
+                <a class="btn btn-ghost btn-small" href="#contacto">Me interesa</a>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="como-funciona" class="section">
+        <div class="container">
+          <h2>Así de simple</h2>
+          <ol class="steps" role="list">
+            {steps.map(([title, text], i) => (
+              <li>
+                <span class="step-num">{i + 1}</span>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section id="faq" class="section section-alt">
+        <div class="container">
+          <h2>Preguntas frecuentes</h2>
+          <div class="faq-list">
+            {faqs.map(([q, a]) => (
+              <details>
+                <summary>{q}</summary>
+                <p>{a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="contacto" class="section">
+        <div class="container form-wrap">
+          <div class="form-intro">
+            <h2>Cuéntanos qué necesitas</h2>
+            <p>
+              Dinos cómo es tu puerta y qué buscas — te recomendamos el modelo exacto y
+              resolvemos tus dudas sin compromiso.
+            </p>
+          </div>
+          <form
+            id="requirements-form"
+            class="form-card"
+            data-endpoint={ENDPOINT}
+            data-project={PROJECT_SLUG}
+          >
+            <label>
+              Nombre
+              <input type="text" name="name" required maxlength="120" autocomplete="name" />
+            </label>
+            <label>
+              Email
+              <input type="email" name="email" required maxlength="200" autocomplete="email" />
+            </label>
+            <label>
+              ¿Qué necesitas?
+              <textarea
+                name="content"
+                required
+                rows="5"
+                maxlength="4000"
+                placeholder="Ej.: quiero una cerradura con huella para la puerta blindada de casa…"
+              ></textarea>
+            </label>
+            <button type="submit">Enviar consulta</button>
+            <p id="form-status" role="status"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>© 2026 {PROJECT_NAME}. Seguridad sin llaves para tu hogar y negocio.</p>
+      </div>
+    </footer>
+
+    <script>
+      const form = document.getElementById('requirements-form');
+      const status = document.getElementById('form-status');
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const endpoint = form.dataset.endpoint;
+        if (!endpoint) {
+          status.textContent = 'El formulario aún no está activo.';
+          return;
+        }
+        const data = Object.fromEntries(new FormData(form));
+        status.textContent = 'Enviando…';
+        try {
+          const res = await fetch(endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              project: form.dataset.project,
+              source: 'landing_form',
+              submitted_by: `${data.name} <${data.email}>`,
+              content: data.content,
+            }),
+          });
+          if (!res.ok) throw new Error(String(res.status));
+          form.reset();
+          status.textContent = '¡Gracias! Hemos recibido tu consulta.';
+        } catch {
+          status.textContent = 'Algo salió mal — inténtalo de nuevo más tarde.';
+        }
+      });
+    </script>
+
+    <style>
+      :root {
+        --ink: #101828;
+        --ink-soft: #475467;
+        --bg: #ffffff;
+        --bg-alt: #f5f7fa;
+        --line: #e4e7ec;
+        --accent: #155eef;
+        --accent-dark: #0b4ac2;
+        --radius: 14px;
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+        line-height: 1.6;
+      }
+      .container { max-width: 1080px; margin: 0 auto; padding: 0 1.5rem; }
+      h1, h2, h3 { line-height: 1.2; margin: 0 0 0.6rem; }
+      h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); }
+
+      .nav {
+        position: sticky; top: 0; z-index: 10;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+      }
+      .nav-inner { display: flex; align-items: center; gap: 1.5rem; padding: 0.8rem 1.5rem; }
+      .brand {
+        display: flex; align-items: center; gap: 0.5rem;
+        font-weight: 800; font-size: 1.05rem; color: var(--ink); text-decoration: none;
+      }
+      .brand svg { width: 22px; height: 22px; color: var(--accent); }
+      .brand span { color: var(--accent); }
+      .nav nav { display: flex; gap: 1.2rem; margin-left: auto; }
+      .nav nav a { color: var(--ink-soft); text-decoration: none; font-size: 0.95rem; }
+      .nav nav a:hover { color: var(--ink); }
+
+      .btn {
+        display: inline-block; padding: 0.75rem 1.5rem;
+        border: 1px solid var(--accent); border-radius: 999px;
+        background: var(--accent); color: #fff;
+        font: inherit; font-weight: 600; text-decoration: none; cursor: pointer;
+        transition: background 0.15s ease;
+      }
+      .btn:hover { background: var(--accent-dark); border-color: var(--accent-dark); }
+      .btn-ghost { background: transparent; color: var(--accent); }
+      .btn-ghost:hover { background: rgba(21, 94, 239, 0.08); }
+      .btn-small { padding: 0.5rem 1.1rem; font-size: 0.9rem; }
+
+      .hero {
+        background:
+          radial-gradient(60rem 30rem at 85% -10%, rgba(21, 94, 239, 0.12), transparent),
+          linear-gradient(180deg, #f8faff 0%, #ffffff 100%);
+        border-bottom: 1px solid var(--line);
+      }
+      .hero-inner {
+        display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 3rem;
+        align-items: center; padding-top: 5rem; padding-bottom: 5rem;
+      }
+      .eyebrow {
+        margin: 0 0 0.8rem; font-weight: 700; font-size: 0.85rem;
+        letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent);
+      }
+      .hero h1 { font-size: clamp(2rem, 4.5vw, 3.1rem); }
+      .lead { font-size: 1.15rem; color: var(--ink-soft); max-width: 34rem; }
+      .hero-actions { display: flex; flex-wrap: wrap; gap: 0.8rem; margin: 1.6rem 0 2.2rem; }
+      .hero-stats {
+        display: flex; gap: 2.2rem; margin: 0; padding: 0; list-style: none;
+      }
+      .hero-stats strong { display: block; font-size: 1.4rem; }
+      .hero-stats span { color: var(--ink-soft); font-size: 0.85rem; }
+
+      .hero-visual { display: flex; justify-content: center; }
+      .lock-card {
+        background: linear-gradient(160deg, #1b2a4a 0%, #101828 100%);
+        color: #fff; border-radius: 22px; padding: 2.4rem 2.2rem;
+        box-shadow: 0 24px 60px rgba(16, 24, 40, 0.35);
+        text-align: center; max-width: 260px;
+      }
+      .lock-card svg { width: 72px; height: 72px; color: #6ea1ff; }
+      .lock-status { margin: 1rem 0 0.3rem; font-weight: 700; }
+      .lock-event { margin: 0; font-size: 0.8rem; color: #98a2b3; }
+
+      .section { padding: 4.5rem 0; }
+      .section-alt { background: var(--bg-alt); border-block: 1px solid var(--line); }
+      .section-lead { color: var(--ink-soft); max-width: 40rem; margin-bottom: 2.2rem; }
+
+      .grid { display: grid; gap: 1.4rem; }
+      .grid-3 { grid-template-columns: repeat(3, 1fr); }
+      .card {
+        background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+        padding: 1.6rem;
+      }
+      .card > svg { width: 30px; height: 30px; color: var(--accent); margin-bottom: 0.8rem; }
+      .card h3 { font-size: 1.08rem; }
+      .card p { margin: 0; color: var(--ink-soft); font-size: 0.95rem; }
+
+      .product { display: flex; flex-direction: column; gap: 0.4rem; }
+      .product .tag {
+        align-self: flex-start; margin: 0 0 0.4rem; padding: 0.2rem 0.7rem;
+        border-radius: 999px; background: rgba(21, 94, 239, 0.1);
+        color: var(--accent); font-size: 0.75rem; font-weight: 700;
+      }
+      .product ul { margin: 0.6rem 0 1rem; padding: 0; list-style: none; }
+      .product li {
+        padding-left: 1.4rem; position: relative;
+        color: var(--ink-soft); font-size: 0.92rem; margin-bottom: 0.3rem;
+      }
+      .product li::before { content: '✓'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+      .product .btn { margin-top: auto; align-self: flex-start; }
+
+      .steps {
+        display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem;
+        margin: 2rem 0 0; padding: 0; list-style: none; counter-reset: step;
+      }
+      .steps h3 { font-size: 1.05rem; }
+      .steps p { margin: 0; color: var(--ink-soft); font-size: 0.95rem; }
+      .step-num {
+        display: inline-flex; align-items: center; justify-content: center;
+        width: 2.2rem; height: 2.2rem; margin-bottom: 0.8rem;
+        border-radius: 50%; background: var(--accent); color: #fff; font-weight: 700;
+      }
+
+      .faq-list { max-width: 46rem; }
+      details {
+        border: 1px solid var(--line); border-radius: var(--radius);
+        background: #fff; padding: 1rem 1.3rem; margin-bottom: 0.8rem;
+      }
+      summary { font-weight: 600; cursor: pointer; }
+      details p { color: var(--ink-soft); margin: 0.7rem 0 0.2rem; }
+
+      .form-wrap { display: grid; grid-template-columns: 1fr 1.2fr; gap: 3rem; align-items: start; }
+      .form-intro p { color: var(--ink-soft); }
+      .form-card {
+        background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+        padding: 2rem; box-shadow: 0 10px 30px rgba(16, 24, 40, 0.06);
+      }
+      label { display: block; margin-bottom: 1rem; font-weight: 600; font-size: 0.95rem; }
+      input, textarea {
+        display: block; width: 100%; margin-top: 0.35rem; padding: 0.65rem 0.75rem;
+        border: 1px solid #cfd4dc; border-radius: 10px; font: inherit;
+      }
+      input:focus, textarea:focus {
+        outline: 2px solid rgba(21, 94, 239, 0.35); border-color: var(--accent);
+      }
+      #form-status { min-height: 1.2em; color: var(--ink-soft); margin: 0.8rem 0 0; }
+
+      .footer { border-top: 1px solid var(--line); padding: 2rem 0; }
+      .footer p { color: var(--ink-soft); font-size: 0.9rem; margin: 0; }
+
+      @media (max-width: 840px) {
+        .hero-inner { grid-template-columns: 1fr; padding-top: 3.5rem; padding-bottom: 3.5rem; }
+        .hero-visual { justify-content: flex-start; }
+        .grid-3, .steps { grid-template-columns: 1fr; }
+        .form-wrap { grid-template-columns: 1fr; gap: 1.5rem; }
+        .nav nav { display: none; }
+      }
+    </style>
+  </body>
+</html>
