@@ -1,4 +1,5 @@
 ---
+import '../styles/theme.css';
 const PROJECT_NAME = 'Cerradura Inteligente';
 const PROJECT_SLUG = 'cerradurainteligente';
 const PROJECT_DESCRIPTION =
@@ -395,7 +396,7 @@ const faqs = [
       .grid { display: grid; gap: 1.4rem; }
       .grid-3 { grid-template-columns: repeat(3, 1fr); }
       .card {
-        background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+        background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
         padding: 1.6rem;
       }
       .card > svg { width: 30px; height: 30px; color: var(--accent); margin-bottom: 0.8rem; }
@@ -431,7 +432,7 @@ const faqs = [
       .faq-list { max-width: 46rem; }
       details {
         border: 1px solid var(--line); border-radius: var(--radius);
-        background: #fff; padding: 1rem 1.3rem; margin-bottom: 0.8rem;
+        background: var(--surface); padding: 1rem 1.3rem; margin-bottom: 0.8rem;
       }
       summary { font-weight: 600; cursor: pointer; }
       details p { color: var(--ink-soft); margin: 0.7rem 0 0.2rem; }
@@ -439,7 +440,7 @@ const faqs = [
       .form-wrap { display: grid; grid-template-columns: 1fr 1.2fr; gap: 3rem; align-items: start; }
       .form-intro p { color: var(--ink-soft); }
       .form-card {
-        background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+        background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
         padding: 2rem; box-shadow: 0 10px 30px rgba(16, 24, 40, 0.06);
       }
       label { display: block; margin-bottom: 1rem; font-weight: 600; font-size: 0.95rem; }
